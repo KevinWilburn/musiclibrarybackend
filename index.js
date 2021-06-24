@@ -12,6 +12,7 @@ app.listen(3000, function() {
 });
 
 app.get('/', (req, res) => {
-    return res.send('Hello World');
+    const findAllSongs = repoContext.songs.findAllSongs();
+    return res.send(findAllSongs )
 
 })
