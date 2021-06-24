@@ -1,9 +1,13 @@
 const express = require('express')
+
 const repoContext = require('./repository/repository-wrapper');
 
 
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 
 
@@ -20,4 +24,11 @@ app.get('/', (req, res) => {
 app.get('/songbyId', (req, res) =>{
     const findSongById = repoContext.songs.findSongById(3);
     return res.send(findSongById);
+})
+
+
+app.post('/api/products', (req, res) => {
+    const newSong = req.body;
+    const addedSong = repoContext.songs.createSong(newSong);
+    return res.send(addedSong);
 })
